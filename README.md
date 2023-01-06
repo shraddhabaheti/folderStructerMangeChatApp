@@ -1,0 +1,2 @@
+# folderStructerMangeChatApp
+folderStructerMangeChatApp
