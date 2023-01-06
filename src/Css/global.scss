@@ -1,0 +1,47 @@
+
+$body_bg: #F0F0F0;
+$primary_clr: #505050;
+$primary_text: #6D6D6D;
+$red: #E70000;
+$grey_border: $primary_text;
+$bg_transparent: transparent;
+$background-modal: $body_bg;
+$green: #00CF78;
+$green-gradient: $green;
+$dark-gradient: $background-modal;
+$option-bg: $grey_border;
+$primary_btn_bg: $primary_clr;
+$selected-gradient: $primary_clr;
+$primary-border: 1px solid $primary_clr;
+$secondary-border: 1px solid $grey_border;
+$form-label-size: 16px;
+$font-base: 'Inter', sans-serif;
+$font-wt500: 500;
+$font-wt600: 600;
+$font-wt700: 700;
+$font-h2-60: 60px;
+$font-h2-48: 48px;
+$font-h2-40: 40px;
+$font-h2-36: 36px;
+$font-35: 35px;
+$font-30: 30px;
+$font-28: 28px;
+$font-26: 26px;
+$font-24: 24px;
+$font-23: 23px;
+$font-22: 22px;
+$font-20: 20px;
+$font-18: 18px;
+$font-16: 16px;
+$font-14: 14px;
+$font-13: 13px;
+$font-12: 12px;
+$font-11: 11px;
+$br-radius-20: 20px;
+$br-radius-8: 8px;
+
+:root {
+	--link-text: #505050;
+	--grey-border: #6D6D6D;
+	--font-wt700: 700;
+}

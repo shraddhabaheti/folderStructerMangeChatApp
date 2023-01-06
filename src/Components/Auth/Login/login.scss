@@ -1,0 +1,37 @@
+@import '../../../css/global.scss';
+
+.sign-in-links {
+    a {
+        color: $primary_clr;
+        font-size: $font-14;
+    }
+}
+.sign-in-btn {
+    font-size: $font-18;
+}
+form#sign-in {
+	input[type=email] {
+		min-height: 40px;
+	}
+	input[type=password] {
+		min-height: 40px;
+	}
+}
+.modal-pop {
+    height: auto !important;
+}
+.button-group {
+	button.MuiButton-root {
+		span.MuiCircularProgress-root {
+			width: 24px !important;
+			height: 24px !important;
+            margin-right: 15px;
+		}
+	}
+}
+.button-group {
+	button.MuiButton-root {
+		width: 170px;
+		padding: 8px 0 !important;
+	}
+}
