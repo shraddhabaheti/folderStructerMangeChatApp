@@ -4,8 +4,8 @@ import { CircularProgress } from '@mui/material'
 import { Login } from '../../../Interfaces/userinterface'
 import { loginValidation } from '../../../Utils/validation'
 import { loginServices } from '../../../Services/authServices'
-
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 let initialState: Login = {
     email: '',
     password: ''
@@ -18,6 +18,10 @@ export const LoginComponent:React.FC<IProps> = () => {
     const [user, setUser] = useState<Login>(initialState);
     const [errorMessages, setErrorMessages] = useState<Login>({});
     const [loading, setLoading] = useState(false)
+    const [showIspassword,setShowisPassword]=useState<boolean>(false)
+    const toggleIspassword=()=>{
+        setShowisPassword(!showIspassword);
+    }
     let handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
@@ -81,13 +85,16 @@ export const LoginComponent:React.FC<IProps> = () => {
                                 Password
                             </label>
                             <input
-                                type="password"
+                                type={showIspassword ?'text':"password"}
                                 name="password"
                                 value={user.password}
                                 className="form-control"
                                 placeholder="******"
                                 onChange={handleChange}
                             />
+                            {
+                                showIspassword ?<RemoveRedEyeIcon onClick={toggleIspassword}/>:<VisibilityOffIcon onClick={toggleIspassword}/>
+                            }
                             <span className="text-danger">{errorMessages.password}</span>
 
                         </div>

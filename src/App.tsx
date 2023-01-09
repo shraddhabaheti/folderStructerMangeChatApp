@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App" style={{background:"lightgray",overflow:"hidden"}}>
          {/* <LoginComponent/> */}
-        <AppRoutes/>
+         <AppRoutes/>
     </div>
   );
 }

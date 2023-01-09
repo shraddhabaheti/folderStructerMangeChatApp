@@ -1,12 +1,15 @@
 
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Fab } from '@mui/material'
 import { AccountCreationData, Login, User } from '../../../Interfaces/userinterface'
 import { loginValidation, signUpValidation } from '../../../Utils/validation'
 import { accountCreationServices, loginServices } from '../../../Services/authServices'
-
-
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import fgg from '../../../Assets/image/eye.png'
+import fgg1 from '../../../Assets/image/eye1.svg'
+import './accountCreation.css'
 let initialState: AccountCreationData = {
     name:'',
     email: '',
@@ -21,6 +24,10 @@ export const AccountCreationComponent:React.FC<IProps> = () => {
     const [user, setUser] = useState<AccountCreationData>(initialState);
     const [errorMessages, setErrorMessages] = useState<User>({});
     const [loading, setLoading] = useState(false)
+    const [ispasswordShow,setIsPasswordShow]=useState<boolean>(false);
+    const toggleSubmit=()=>{
+        setIsPasswordShow(!ispasswordShow);
+    }
     let handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
        
         try {
@@ -32,8 +39,10 @@ export const AccountCreationComponent:React.FC<IProps> = () => {
                 const response: any = await accountCreationServices(user)
                 if (response.status === 200) {
                     setLoading(false);
+                    setIsPasswordShow(false)
                 } else if (response.status === 400) {
                     setLoading(false)
+                   setIsPasswordShow(false)
                 }
             }
 
@@ -97,7 +106,7 @@ export const AccountCreationComponent:React.FC<IProps> = () => {
                                 onChange={handleChange}
                             />
                             <span className="text-danger">{errorMessages.email}</span>
-
+   
                         </div>
                         <div className="form-group mb-3">
                             <label
@@ -105,13 +114,17 @@ export const AccountCreationComponent:React.FC<IProps> = () => {
                                 Password
                             </label>
                             <input
-                                type="password"
+                                type={ispasswordShow?"text":'password' }
                                 name="password"
                                 value={user.password}
                                 className="form-control"
                                 placeholder="******"
                                 onChange={handleChange}
                             />
+                           {
+                             ispasswordShow ?<RemoveRedEyeIcon onClick={toggleSubmit}/>:<VisibilityOffIcon onClick={toggleSubmit}/>
+                           }
+                     
                             <span className="text-danger">{errorMessages.password}</span>
 
                         </div>

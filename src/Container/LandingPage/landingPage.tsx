@@ -1,21 +1,18 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-
 import {
   CustomizedModel,
   AccountCreationComponent,
   LoginComponent,
- 
   LoadingScreen,
-  
+
 } from "../../Components";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image from  '../../Assets/image/fgg.jpg';
+import image from '../../Assets/image/fgg.jpg';
 import man from '../../Assets/image/n.jpg';
 export const LandingPage: React.FC = () => {
   const [openModel, setOpenModel] = useState(false);
   const [modelName, setModelName] = useState("Account Creation");
-  
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOpenModel = (name: string) => {
@@ -33,7 +30,7 @@ export const LandingPage: React.FC = () => {
       case "Account Creation":
         return (
           <AccountCreationComponent
-           setIsLoading={setIsLoading}
+            setIsLoading={setIsLoading}
             handleOpenModel={handleOpenModel}
           />
         );
@@ -54,18 +51,18 @@ export const LandingPage: React.FC = () => {
             Back to Login
           </Button>
         </div>
-    
+
       default:
         return (
           <AccountCreationComponent
-          setIsLoading={setIsLoading}
-          handleOpenModel={handleOpenModel}
+            setIsLoading={setIsLoading}
+            handleOpenModel={handleOpenModel}
           />
         );
     }
   };
 
-  
+
   return (
     <>
       {isLoading ? (
@@ -114,10 +111,10 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-7" style={{background:"black"}}>
+              <div className="col-lg-7" style={{ background: "black" }}>
                 <div className="img-container position-relative">
                   <img src={man} width="130%"></img>
-                
+
                 </div>
               </div>
             </div>
@@ -128,7 +125,7 @@ export const LandingPage: React.FC = () => {
               handleClose={handleCloseModel}
               title={modelName}
               isClose={modelName !== "" ? true : false}
-              
+
             >
               {handleChildren()}
             </CustomizedModel>
