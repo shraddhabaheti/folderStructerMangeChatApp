@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { CircularProgress } from '@mui/material'
 import { Login } from '../../../Interfaces/userinterface'
@@ -6,34 +6,52 @@ import { loginValidation } from '../../../Utils/validation'
 import { loginServices } from '../../../Services/authServices'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Snackmessages } from '../../../Routes/AppRoute'
+import { setItemLocalStorage } from '../../../Utils/browserStorage'
+import { useNavigate } from 'react-router-dom'
+import { MAINMENU } from '../../../Routes/RouteConstent'
+
 let initialState: Login = {
     email: '',
     password: ''
 }
-interface IProps{
+interface IProps {
     setIsLoading: any
     handleOpenModel?: any
 }
-export const LoginComponent:React.FC<IProps> = () => {
+export const LoginComponent: React.FC<IProps> = () => {
     const [user, setUser] = useState<Login>(initialState);
     const [errorMessages, setErrorMessages] = useState<Login>({});
     const [loading, setLoading] = useState(false)
-    const [showIspassword,setShowisPassword]=useState<boolean>(false)
-    const toggleIspassword=()=>{
+    const [showIspassword, setShowisPassword] = useState<boolean>(false)
+    const snackbarShowMessage = useContext(Snackmessages);
+    const navigate = useNavigate();
+    const toggleIspassword = () => {
         setShowisPassword(!showIspassword);
     }
     let handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+
         try {
             e.preventDefault();
             let { errors, isValid } = loginValidation(user)
             setErrorMessages(errors)
             if (isValid) {
+
                 setLoading(true)
                 const response: any = await loginServices(user)
                 if (response.status === 200) {
+
+                    // snackbarShowMessage(response.data.message, "success");
+
+                    setItemLocalStorage("token", JSON.stringify(response.data.data.token))
                     setLoading(false);
+                    navigate(`/${MAINMENU}`)
+                    snackbarShowMessage("Login successfull", "success");
+
                 } else if (response.status === 400) {
+                    // snackbarShowMessage(response.data.message,  "error");
                     setLoading(false)
+                    snackbarShowMessage("Please check Email or Password", "error")
                 }
             }
 
@@ -85,7 +103,7 @@ export const LoginComponent:React.FC<IProps> = () => {
                                 Password
                             </label>
                             <input
-                                type={showIspassword ?'text':"password"}
+                                type={showIspassword ? 'text' : "password"}
                                 name="password"
                                 value={user.password}
                                 className="form-control"
@@ -93,7 +111,7 @@ export const LoginComponent:React.FC<IProps> = () => {
                                 onChange={handleChange}
                             />
                             {
-                                showIspassword ?<RemoveRedEyeIcon onClick={toggleIspassword}/>:<VisibilityOffIcon onClick={toggleIspassword}/>
+                                showIspassword ? <VisibilityOffIcon onClick={toggleIspassword} /> : <RemoveRedEyeIcon onClick={toggleIspassword} />
                             }
                             <span className="text-danger">{errorMessages.password}</span>
 

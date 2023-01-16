@@ -1,6 +1,6 @@
 
 import React from "react";
-import {User} from '../../../Interfaces/userinterface'
+import { User } from '../../../Interfaces/userinterface'
 
 interface IProps {
     handleChange: any
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const StepOne: React.FC<IProps> = ({ handleChange, errorMsg, userData }) => {
-    let d:boolean = false
+    let d: boolean = false
     return (
         <>
             <div>
@@ -25,7 +25,7 @@ export const StepOne: React.FC<IProps> = ({ handleChange, errorMsg, userData }) 
                             <div className="form-group mb-2">
                                 <label
                                     className="form-label mb-1">
-                                 Name
+                                    Name
                                     <span className="text-danger">*</span>
                                 </label>
                                 <input
@@ -39,7 +39,7 @@ export const StepOne: React.FC<IProps> = ({ handleChange, errorMsg, userData }) 
                                 <span className="text-danger">{errorMsg.name}</span>
                             </div>
                         </div>
-                      
+
                         <div className="col-md-6">
                             <div className="form-group mb-2">
                                 <label className="form-label mb-1">
@@ -58,7 +58,7 @@ export const StepOne: React.FC<IProps> = ({ handleChange, errorMsg, userData }) 
 
                             </div>
                         </div>
-                       
+
                         <div className="col-md-6">
                             <div className="form-group mb-2">
                                 <label
@@ -94,7 +94,7 @@ export const StepOne: React.FC<IProps> = ({ handleChange, errorMsg, userData }) 
                                 />
                                 <span className="text-danger">
                                     {errorMsg.password}
-                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>

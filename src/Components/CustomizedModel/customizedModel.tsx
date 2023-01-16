@@ -2,9 +2,6 @@ import React from "react"
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import '../../css/global.scss'
-// import '../../css/global-component.scss'
-// import './customizedModel.scss'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -42,7 +39,7 @@ export const CustomizedModel: React.FC<IProps> = ({ open, handleClose, title, ha
                 aria-describedby="modal-modal-description"
                 className={`${className ? className : ""}`}
             >
-                <Box className="modal-pop" style={{background:'black'}} sx={style}>
+                <Box className="modal-pop" style={{ background: 'black' }} sx={style}>
                     <h1 className="main-heading fw-bold m-0 d-flex align-items-center justify-content-between py-2 px-4 text-white">
                         {
                             handleBack &&
